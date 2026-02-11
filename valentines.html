@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Freyalyn 💍</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0b0b0b;
+    color: #f5f5f5;
+}
+
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.9)),
+      url('hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    opacity: .85;
+}
+
+.card {
+    max-width: 720px;
+    margin: auto;
+    background: rgba(255,255,255,.05);
+    padding: 45px;
+    border-radius: 28px;
+    backdrop-filter: blur(12px);
+}
+
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.letter {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    opacity: .95;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+    margin-top: 45px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.92);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 22px;
+}
+
+.proposal h2 {
+    font-size: 2.4rem;
+}
+
+.buttons {
+    margin-top: 35px;
+    position: relative;
+    height: 90px;
+}
+
+button {
+    padding: 15px 36px;
+    font-size: 18px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+#yes {
+    background: #d6b25e;
+    color: #000;
+}
+
+#no {
+    background: #444;
+    color: #eee;
+    position: absolute;
+    left: 190px;
+}
+
+.ring {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    animation: glow 2.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 12px #d6b25e; }
+    to { text-shadow: 0 0 32px #ffe08a; }
+}
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    animation: float 7s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(110vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <div>
+        <h1>Freyalyn,</h1>
+        <p>This is something I’ve wanted to say… quietly, honestly.</p>
+    </div>
+</section>
+
+<section>
+    <div class="card">
+        <h2>From My Heart</h2>
+        <p class="letter">
+            Loving you has never been loud.
+            It’s been steady. Certain. Safe.
+            <br><br>
+            You became my calm in the middle of everything,
+            the person I look for in every room,
+            the name my heart says without thinking.
+            <br><br>
+            This page isn’t about a single day.
+            It’s about all the days I want with you —
+            the ordinary ones, the hard ones,
+            and the beautiful ones we haven’t lived yet.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>Our Memories</h2>
+    <div class="gallery">
+        <img src="img1.JPG">
+        <img src="img2.JPG">
+        <img src="img3.JPG">
+        <img src="img4.JPG">
+        <img src="img5.JPG">
+    </div>
+</section>
+
+<section class="proposal">
+    <div class="card">
+        <div class="ring">💍</div>
+        <h2>Freyalyn, will you be my Valentine?</h2>
+        <p>And continue choosing this life with me.</p>
+
+        <div class="buttons">
+            <button id="yes">Yes, I will ❤️</button>
+            <button id="no">No</button>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+    <img id="lightboxImg">
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<script>
+const noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 260 + "px";
+});
+
+document.getElementById("yes").addEventListener("click", () => {
+    startHearts();
+    alert("Thank you for choosing me. Always. 💍🤍");
+});
+
+const images = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+images.forEach(img => {
+    img.onclick = () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+    };
+});
+
+lightbox.onclick = () => lightbox.style.display = "none";
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "🤍";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.getElementById("hearts").appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
